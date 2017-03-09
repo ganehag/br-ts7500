@@ -5,4 +5,7 @@ LABEL maintainer "mikael.brorsson@gmail.com"
 COPY ts7500 board/technologic/ts7500
 COPY ts7500_defconfig configs/ts7500_defconfig
 
-RUN make ts7500_defconfig
+RUN make ts7500_defconfig \
+ && cd /src/$BUILDROOT_VERSION/board/technologic/ts7500/src \
+ && COMPILER_PREFIX=/src/$BUILDROOT_VERSION/output/host/usr/bin/arm-buildroot-linux-musleabi- make \
+ && cp ts7500ctl /src/$BUILDROOT_VERSION/output/target/sbin/
