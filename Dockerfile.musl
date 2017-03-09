@@ -1,0 +1,8 @@
+FROM ganehag/br-fa526:2017.02-musl
+
+LABEL maintainer "mikael.brorsson@gmail.com"
+
+COPY ts7500 board/technologic/ts7500
+COPY ts7500_defconfig configs/ts7500_defconfig
+
+RUN make ts7500_defconfig
