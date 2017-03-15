@@ -1,20 +1,23 @@
+CC?=gcc
+STRIP?=strip
+
 all: ts7500ctl xuartctl spiflashctl sdctl dio
-	$(COMPILER_PREFIX)strip $^
+	$(STRIP) $^
 
 ts7500ctl: ts7500ctl.c ispvm.c
-	$(COMPILER_PREFIX)gcc -o $@ $^
+	$(CC) -o $@ $^
 
 xuartctl: xuartctl.c
-	$(COMPILER_PREFIX)gcc -lutil -o $@ $^
+	$(CC) -lutil -o $@ $^
 
 spiflashctl: spiflashctl.c
-	$(COMPILER_PREFIX)gcc -lutil -o $@ $^
+	$(CC) -lutil -o $@ $^
 
 sdctl: sdctl.c
-	$(COMPILER_PREFIX)gcc -o $@ $^
+	$(CC) -o $@ $^
 
 dio: dio.c sbus.c
-	$(COMPILER_PREFIX)gcc -lutil -o $@ $^
+	$(CC) -lutil -o $@ $^
 
 clean:
 	rm -f *.o ts7500ctl xuartctl spiflashctl sdctl dio

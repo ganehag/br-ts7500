@@ -1,0 +1,2 @@
+source "$BR2_EXTERNAL_BAR_TS7500_PATH/package/ts7500utils/Config.in"
+

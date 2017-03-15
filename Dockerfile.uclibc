@@ -1,11 +1,24 @@
-FROM ganehag/br-fa526:2017.02-uclibc
+FROM ganehag/br-fa526:2017.02
 
 LABEL maintainer "mikael.brorsson@gmail.com"
 
-COPY ts7500 board/technologic/ts7500
-COPY ts7500_uclibc_defconfig configs/ts7500_defconfig
+WORKDIR /src/$BUILDROOT_VERSION
 
-RUN make ts7500_defconfig \
- && cd /src/$BUILDROOT_VERSION/board/technologic/ts7500/src \
- && COMPILER_PREFIX=/src/$BUILDROOT_VERSION/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi- make \
- && cp ts7500ctl /src/$BUILDROOT_VERSION/output/target/sbin/
+COPY external /src/external
+COPY ts7500utils output/build/ts7500utils-1.0
+
+RUN \
+  echo "=====> extraction uClibc toolchain" && \
+  mkdir -p /opt/uclibcgnueabi && \
+  tar xzf /opt/toolchain-arm-buildroot-linux-uclibcgnueabi.tar.gz -C /opt/uclibcgnueabi && \
+  \
+  \
+  echo "=====> building system" && \
+  make BR2_EXTERNAL=/src/external ts7500_uclibc_defconfig && \
+  touch output/build/ts7500utils-1.0/.stamp_downloaded && \
+  touch output/build/ts7500utils-1.0/.stamp_extracted && \
+  ln -sf /images output/images
+
+VOLUME ["/src/$BUILDROOT_VERSION/configs"]
+
+CMD make

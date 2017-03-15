@@ -7,7 +7,7 @@ This container has a pre-built toolchain for the FA526 compatible CPU found in t
 It will only prepare the software up to the final "make" statement. You can (and should) extend this
 image by using it in you own Dockerfile.
 
-It is highly recommended to use the `ts7500_defconfig` file from this repository as a configuration
+It is highly recommended to use the `ts7500_{musl,uclibc}_defconfig` file from this repository as a configuration
 skeleton. Extending on this with everyting you need.
 
 > This container will produce a kernel and rootfs with EABI.
@@ -48,5 +48,5 @@ $ dd if=zImage of=/dev/sdX1
 $ dd if=rootfs.ext2.gz of=/dev/sdX2
 ```
 
-> *Keep in mind that the rootfs.ext2.gz file CAN not be larger than 4MB*
+> *Keep in mind that the rootfs.ext2.gz file CAN not be larger than 4MB* and that it is an initramfs.
 

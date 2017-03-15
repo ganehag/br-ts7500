@@ -1,0 +1,6 @@
+config BR2_PACKAGE_TS7500UTILS
+	bool "ts7500utils"
+	help
+		Various TS7500 binaries
+
+		http://www.embeddedarm.com
