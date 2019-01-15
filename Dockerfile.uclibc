@@ -1,4 +1,4 @@
-FROM ganehag/br-fa526:2017.02
+FROM ganehag/br-fa526:2018.02.9
 
 LABEL maintainer "mikael.brorsson@gmail.com"
 

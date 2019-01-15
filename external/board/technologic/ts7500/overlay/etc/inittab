@@ -24,6 +24,9 @@
 # now run any rc scripts
 ::sysinit:/etc/init.d/rcS
 
+# XUART
+null::sysinit:/usr/sbin/xuartctl --server
+
 # Put a getty on the serial port
 console::respawn:/sbin/getty -L  console 0 vt100 # GENERIC_SERIAL
 
